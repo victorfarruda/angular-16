@@ -20,11 +20,11 @@ angular.module('try').
                 template: "<blog-list></blog-list>"
               }).
               when("/blog/:id", {
-                  template: "<blog-list></blog-list>"
+                  template: "<blog-detail></blog-detail>"
               }).
-              when("/blog/:id/:abc", {
-                  template: "<blog-list></blog-list>"
-              }).
+//              when("/blog/:id/:abc", {
+//                  template: "<blog-list></blog-list>"
+//              }).
 //              when("/about", {
 //                  templateUrl: "/templates/about.html"
 //              }).
