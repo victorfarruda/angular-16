@@ -25,6 +25,9 @@ angular.module('try').
               when("/blog/2", {
                   template: "<blog-list></blog-list>"
               }).
+              when("/about", {
+                  templateUrl: "/templates/about.html"
+              }).
               otherwise({
                   template: "Not Found"
               })
