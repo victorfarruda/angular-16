@@ -14,22 +14,28 @@ angular.module('blogDetail').
                         resetReply()
                     }
                 })
-                $scope.addReplay = function(){
-                    console.log($scope.reply)
-                    $scope.post.comments.push($scope.reply)
-                    resetReply()
-                }
-
-                function resetReply(){
-                    $scope.reply = {
-                        'id': $scope.post.comments.length + 1,
-                        'text': ''
-                    }
-                }
-
                 if ($scope.notFound){
                     $location.path("/404")
                 }
             })
+
+            $scope.deleteComment = function(comment){
+                $scope.$apply(
+                    $scope.post.comments.splice(comment, 1)
+                )
+            }
+
+            $scope.addReplay = function(){
+                console.log($scope.reply)
+                $scope.post.comments.push($scope.reply)
+                resetReply()
+            }
+
+            function resetReply(){
+                $scope.reply = {
+                    'id': $scope.post.comments.length + 1,
+                    'text': ''
+                }
+            }
         }
     });
