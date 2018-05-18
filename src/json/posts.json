@@ -1,5 +1,9 @@
 [
-    {"title": "Some Title", "id": 1, "description": "This is a book", "publishDate": "2016-09-11"},
+    {"title": "Some Title", "id": 1, "description": "This is a book", "publishDate": "2016-09-11",
+        "comments": [
+            {"id": 1, "text": "First comment"},
+            {"id": 2, "text": "Comment two"}
+        ]},
     {"title": "Title", "id": 2, "description": "This is a book"},
     {"title": "Tea", "id": 3, "description": "This is a book"},
     {"title": "Lite", "id": 4, "description": "This is a book"}
