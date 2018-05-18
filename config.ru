@@ -1,5 +1,5 @@
 use Rack::Static,
-  :urls => ["/js", "/templates"],
+  :urls => ["/js", "/templates", 'json'],
   :root => "src"
 
 run lambda { |env|

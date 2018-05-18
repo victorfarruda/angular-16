@@ -3,25 +3,34 @@
 angular.module('blogDetail').
     component('blogDetail', {
         templateUrl: '/templates/blog-detail.html',
-        controller: function($location, $routeParams, $scope){
-            var blogItems = [
-                {title: "Some Title", id: 1, description: "This is a book", publishDate: "2016-09-11"},
-                {title: "Title", id: 2, description: "This is a book"},
-                {title: "Tea", id: 3, description: "This is a book"},
-                {title: "Lite", id: 4, description: "This is a book"},
-            ]
+        controller: function($http, $location, $routeParams, $scope){
+            $http.get('/json/posts.json', {}).then(successCallback, errorCallback)
 
-            $scope.notFound = true
-            angular.forEach(blogItems, function(post){
-                if (post.id == $routeParams.id){
-                    $scope.post = post
-                    $scope.notFound = false
-                }
-            })
+            function successCallback(response, status, config, statusText){
+                $scope.notFound = true
+                var blogItems = response.data
+                $scope.posts = blogItems
+                angular.forEach(blogItems, function(post){
+                    if (post.id == $routeParams.id){
+                        $scope.post = post
+                        $scope.notFound = false
+                        console.log(post)
+                    }
+                })
+            }
+            function errorCallback(response, status, config, statusText){
+                $scope.notFound = true
+                console.log(response)
+            }
+//            angular.forEach(blogItems, function(post){
+//                if (post.id == $routeParams.id){
+//                    $scope.post = post
+//                    $scope.notFound = false
+//                }
+//            })
 
             if ($scope.notFound){
                 $location.path("/404")
             }
-            $scope.title = "Blog " + $routeParams.id
         }
     });
