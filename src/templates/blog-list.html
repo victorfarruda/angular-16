@@ -1,12 +1,17 @@
-
-    <h1>Blog List <small><a href='#' ng-click='changeCols(4)'>Change</a></small></h1>
-    <div class='row'>
-        <div class='col-sm-6'>
-            <input type='text' ng-model='query' class='form-control' placeholder='Filter' />
-        </div>
+<h1>Blog List <small><a href='#' ng-click='changeCols(4)'>Change</a></small></h1>
+<div class='row'>
+    <div class='col-sm-6'>
+        <input type='text' ng-model='query' class='form-control' placeholder='Filter' />
     </div>
+</div>
+
+<li dir-paginate='item in items | filter: query | itemsPerPage: 4' pagination-id="sub-items">
+    {{ item.title }}
+</li>
+<dir-pagination-controls pagination-id="sub-items"></dir-pagination-controls>
+
 <div class="container">
-    <div class="row" ng-repeat='items in colItems'>
+    <div class="row" dir-paginate='items in colItems | filter: query | itemsPerPage: 4' pagination-id="main-items">
         <div class="card {{ cssClass }} mt-3 " ng-repeat='item in items | filter: query'>
             <img class="card-img-top" src=".../100px200/" alt="Card image cap">
             <div class="card-body">
@@ -15,5 +20,6 @@
             </div>
         </div>
     </div>
+    <dir-pagination-controls pagination-id="main-items"></dir-pagination-controls>
     <span ng-if='items.length == 0'>Posts coming soon</span>
 </div>
