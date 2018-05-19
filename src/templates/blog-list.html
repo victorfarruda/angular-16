@@ -1,30 +1,44 @@
-<h1>Blog List <small><a href='#' ng-click='changeCols(4)'>Change</a></small></h1>
-<div class='row'>
-    <div class='col-sm-6'>
+<div class="col-sm-6 offset-3">
+    <h1>Blog List</h1>
+    <div class="row">
+    <div class="col-sm-6">
         <input type='text' ng-model='query' class='form-control' placeholder='Filter' />
     </div>
+    <div class="col-sm-6">
+        <select class="form-control " ng-model="order">
+            <option value="title">A-Z</option>
+            <option value="-title">Z-A</option>
+        </select>
+    </div>
+        </div>
+    <dir-pagination-controls pagination-id="sub-items"></dir-pagination-controls>
 </div>
 
-<select ng-model="order">
-    <option value="title">A-Z</option>
-    <option value="-title">Z-A</option>
-</select>
 
-<li dir-paginate='item in items | orderBy: order | filter: query | itemsPerPage: 4' pagination-id="sub-items">
-    {{ item.title }}
-</li>
-<dir-pagination-controls pagination-id="sub-items"></dir-pagination-controls>
-
-<div class="container">
-    <div class="row" dir-paginate='items in colItems | filter: query | itemsPerPage: 4' pagination-id="main-items">
-        <div class="card {{ cssClass }} mt-3 " ng-repeat='item in items | filter: query'>
-            <img class="card-img-top" src="{{ item.image }}" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">{{ item.title }}</h5>
-                <a ng-href='#' class="btn btn-primary" confirm-click="Are you ready?" confirmed-click="goToItem(item)"/>View</a>
-            </div>
+<div class="col-sm-6 offset-3">
+    <div class="card mt-3" dir-paginate='item in items | orderBy: order | filter: query | itemsPerPage: 4' pagination-id="sub-items">
+        <img class="card-img-top" src="{{ item.image }}" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">{{ item.title }}</h5>
+            <a ng-href='#' class="btn btn-primary" confirm-click="Are you ready?" confirmed-click="goToItem(item)"/>View</a>
         </div>
     </div>
-    <dir-pagination-controls pagination-id="main-items"></dir-pagination-controls>
     <span ng-if='items.length == 0'>Posts coming soon</span>
 </div>
+<div class="col-sm-6 offset-3">
+    <dir-pagination-controls pagination-id="sub-items"></dir-pagination-controls>
+</div>
+
+<!--<div class="container">-->
+    <!--<div class="row" dir-paginate='items in colItems | filter: query | itemsPerPage: 4' pagination-id="main-items">-->
+        <!--<div class="card {{ cssClass }} mt-3 " ng-repeat='item in items | filter: query'>-->
+            <!--<img class="card-img-top" src="{{ item.image }}" alt="Card image cap">-->
+            <!--<div class="card-body">-->
+                <!--<h5 class="card-title">{{ item.title }}</h5>-->
+                <!--<a ng-href='#' class="btn btn-primary" confirm-click="Are you ready?" confirmed-click="goToItem(item)"/>View</a>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<dir-pagination-controls pagination-id="main-items"></dir-pagination-controls>-->
+    <!--<span ng-if='items.length == 0'>Posts coming soon</span>-->
+<!--</div>-->
