@@ -9,6 +9,7 @@ angular.module('blogList').
                     $location.path("/blog/" + item.id)
                 })
             }
+            $scope.order = 'title'
 
             $scope.changeCols = function(number){
                 if (angular.isNumber(number)){

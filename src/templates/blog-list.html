@@ -5,7 +5,12 @@
     </div>
 </div>
 
-<li dir-paginate='item in items | filter: query | itemsPerPage: 4' pagination-id="sub-items">
+<select ng-model="order">
+    <option value="title">A-Z</option>
+    <option value="-title">Z-A</option>
+</select>
+
+<li dir-paginate='item in items | orderBy: order | filter: query | itemsPerPage: 4' pagination-id="sub-items">
     {{ item.title }}
 </li>
 <dir-pagination-controls pagination-id="sub-items"></dir-pagination-controls>
@@ -13,7 +18,7 @@
 <div class="container">
     <div class="row" dir-paginate='items in colItems | filter: query | itemsPerPage: 4' pagination-id="main-items">
         <div class="card {{ cssClass }} mt-3 " ng-repeat='item in items | filter: query'>
-            <img class="card-img-top" src=".../100px200/" alt="Card image cap">
+            <img class="card-img-top" src="{{ item.image }}" alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title">{{ item.title }}</h5>
                 <a ng-href='#' class="btn btn-primary" confirm-click="Are you ready?" confirmed-click="goToItem(item)"/>View</a>
