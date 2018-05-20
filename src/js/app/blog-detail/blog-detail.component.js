@@ -26,7 +26,7 @@ angular.module('blogDetail').
             }
 
             $scope.addReplay = function(){
-                console.log($scope.reply)
+//                console.log($scope.reply)
                 $scope.post.comments.push($scope.reply)
                 resetReply()
             }
