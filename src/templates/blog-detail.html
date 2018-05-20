@@ -1,18 +1,23 @@
 <div class="row">
     <div class="col-sm-6 offset-sm-3">
         <h1>{{ post.title }} <small>{{ post.publishDate }}</small></h1><hr/>
+        <span ng-show="post.image">
+            <img class="card-img-top" src="{{ post.image }}" alt="Card image cap">
+        </span>
         <p>{{ post.description }}</p>
-        <hr/>
-
-        <h3>Comments</h3>
-        <div class="col-sm-12">
-            <input type="text" class="form-control" ng-model="query" placeholder="Filter comments"/>
-        </div>
-        <ul>
-            <li ng-repeat="comment in post.comments | filter: query">
-                {{ comment.text }} <a href="#" confirm-click="Do you want to delete this?" confirmed-click="deleteComment(commentcomment)">Confirm</a> <a href="#" ng-click="deleteComment(comment)">Delete</a>
-            </li>
-        </ul>
+        <span ng-show="comments.length > 0">
+            <hr/>
+            <h3>Comments</h3>
+            <div class="col-sm-12">
+                <input type="text" class="form-control" ng-model="query" placeholder="Filter comments"/>
+            </div>
+            <ul>
+                <li ng-repeat="comment in comments | filter: query">
+                    {{ comment.text }} <a href="#" confirm-click="Do you want to delete this?" class="btn btn-small btn-danger" confirmed-click="deleteComment(comment)">X</a>
+                    <!--<a href="#" ng-click="deleteComment(comment)">Delete</a>-->
+                </li>
+            </ul>
+        </span>
         <p style="color:red;" ng-if="reply.text">Preview: {{ reply.text }}</p>
         <hr/>
         <div class="col-sm-12">

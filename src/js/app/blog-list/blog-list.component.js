@@ -9,6 +9,12 @@ angular.module('blogList').
                     $location.path("/blog/" + item.id)
                 })
             }
+            var q = $location.search().q
+            if (q){
+                $scope.query = q
+                $scope.didPerformSearch = true;
+            }
+
             $scope.order = 'title'
 
             $scope.changeCols = function(number){
@@ -26,6 +32,9 @@ angular.module('blogList').
                 if($scope.query) {
                     $scope.loadingQuery = true
                     $scope.cssClass = 'col-sm-12'
+                    if ($scope.query != q) {
+                        $scope.didPerformSearch = false;
+                    }
                 } else {
                     if ($scope.loadingQuery) {
                         setupCol($scope.items, 2)

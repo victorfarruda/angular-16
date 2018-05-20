@@ -1,5 +1,7 @@
 <div class="col-sm-6 offset-3">
-    <h1>Blog List</h1>
+    <h1 ng-hide='didPerformSearch'>Blog List</h1>
+    <h1 ng-show='didPerformSearch'>Results for {{ query }}</h1>
+
     <div class="row">
     <div class="col-sm-6">
         <input type='text' ng-model='query' class='form-control' placeholder='Filter' />
@@ -17,10 +19,11 @@
 
 <div class="col-sm-6 offset-3">
     <div class="card mt-3" dir-paginate='item in items | orderBy: order | filter: query | itemsPerPage: 4' pagination-id="sub-items">
-        <img class="card-img-top" src="{{ item.image }}" alt="Card image cap">
+        <a ng-show="item.image" ng-href='/blog/{{ item.id }}'/><img class="card-img-top" src="{{ item.image }}" alt="Card image cap"></a>
         <div class="card-body">
-            <h5 class="card-title">{{ item.title }}</h5>
-            <a ng-href='#' class="btn btn-primary" confirm-click="Are you ready?" confirmed-click="goToItem(item)"/>View</a>
+            <a ng-href='/blog/{{ item.id }}'/><h5 class="card-title">{{ item.title }}</h5></a>
+            <a ng-href='/blog/{{ item.id }}' class="btn btn-primary"/>View</a>
+            <!--<a ng-href='#' class="btn btn-primary" confirm-click="Are you ready?" confirmed-click="goToItem(item)"/>View</a>-->
         </div>
     </div>
     <span ng-if='items.length == 0'>Posts coming soon</span>

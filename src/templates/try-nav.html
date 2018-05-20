@@ -8,7 +8,7 @@
     <form class="form-inline mr-auto mt-2 mt-lg-0" ng-submit="searchItem()">
       <input
               ng-model="searchQuery"
-              uib-typeahead="item.title for item in items | filter:$viewValue | limitTo:8"
+              uib-typeahead="item.title for item in items | orderBy: 'title' | filter:$viewValue | limitTo:8"
               class="form-control mr-sm-2"
               type="search"
               placeholder="Search"

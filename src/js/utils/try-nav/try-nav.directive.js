@@ -14,6 +14,7 @@ angular.
                     }
                     scope.searchItem = function(){
                         $location.path('/blog/').search("q", scope.searchQuery)
+                        scope.searchQuery = ""
                     }
                 }
             }
